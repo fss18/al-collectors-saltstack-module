@@ -23,5 +23,5 @@ install:
   - sudo salt-call grains.items --local
 
 script:
-  - sudo salt-call state.show_highstate --local --retcode-passthrough
+  - sudo salt-call state.apply al-log-syslog test=True --local --retcode-passthrough
 
