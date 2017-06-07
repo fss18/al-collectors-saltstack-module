@@ -56,7 +56,11 @@
 {% elif (grains['os_family'] == 'RedHat') %}
   {% set alertlogic_pkg_name_prefix = 'al-log-syslog-LATEST-1.' %}
   {% set alertlogic_initscript = 'rsyslog' %}
-  {% set alertlogic_pkg_name_arch = grains['cpuarch'] %}
+  {% if grains['cpuarch'] == 'i686' %}
+    {% set alertlogic_pkg_name_arch = 'i386' %}
+  {% else %}
+    {% set alertlogic_pkg_name_arch = grains['cpuarch'] %}
+  {% endif %}
   {% set alertlogic_pkg_name_ext = 'rpm' %}
   {% if grains['osmajorrelease'] >= 6 %}
     {% set alertlogic_syslog_ng_source = 's_all' %}
