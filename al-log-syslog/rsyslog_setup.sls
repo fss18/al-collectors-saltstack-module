@@ -8,10 +8,10 @@ rsyslog:
     - watch:
       - file: /etc/rsyslog.d/alertlogic.conf
     - onlyif:
-      - ls /etc/init.d/{{ alertlogic_initscript }}
+      - service rsyslog status | grep running
 
 /etc/rsyslog.d/alertlogic.conf:
   file.managed:
     - source: salt://al-log-syslog/files/rsyslog/alertlogic.conf
     - onlyif:
-      - ls /etc/init.d/{{ alertlogic_initscript }}
+      - service rsyslog status | grep running
